@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int *start_ptr = new int[1000000];
+int *start_ptr = new int[5000];
 
 int make_hash(string key) {
   int hash = 0;
@@ -11,6 +11,7 @@ int make_hash(string key) {
     ascii -= 31; // removes weird symbols
     hash += ascii;
   }
+  cout << hash << endl;
   return hash;
 }
 
