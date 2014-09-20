@@ -33,6 +33,9 @@ class FalseValue(object):
     def __init__(self, value):
         self.value = value
 
+    def __repr__(self):
+        return '<FalseValue {}>'.format(self.value)
+
 
 HASH_TABLE = []
 def set(key, value):
