@@ -14,7 +14,7 @@ def make_hash(key):
     key = str(key)
     hash_ = 0
     for c in key:
-        hash_ += ord(c)
+        hash_ += (ord(c)-31) # remove weird symbols
     return hash_
 
 

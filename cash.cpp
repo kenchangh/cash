@@ -8,6 +8,7 @@ int make_hash(string key) {
   int hash = 0;
   for (char &c: key) {
     int ascii = c;
+    ascii -= 31; // removes weird symbols
     hash += ascii;
   }
   return hash;
