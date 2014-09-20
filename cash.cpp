@@ -1,3 +1,4 @@
+//#include <Python.h>
 #include <iostream>
 using namespace std;
 
@@ -11,7 +12,6 @@ int make_hash(string key) {
     ascii -= 31; // removes weird symbols
     hash += ascii;
   }
-  cout << hash << endl;
   return hash;
 }
 
@@ -33,8 +33,6 @@ void remove(string key) {
 }
 
 int main() {
-  set("yo", 50);
-  cout << get("y") << endl;
   delete[] start_ptr;
   return 0;
 }
