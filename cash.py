@@ -10,6 +10,8 @@
 """
 
 def make_hash(key):
+    """Makes hash by summing up string's ascii codes"""
+    key = str(key)
     hash_ = 0
     for c in key:
         hash_ += ord(c)
@@ -35,7 +37,7 @@ class FalseValue(object):
 HASH_TABLE = []
 def set(key, value):
     table = HASH_TABLE
-    hash_ = make_hash(str(key))
+    hash_ = make_hash(key)
     # Value is falsey, special procedure to handle
     if not value:
         value = FalseValue(value)
@@ -48,14 +50,11 @@ def set(key, value):
         table[hash_] = value
         return True
 
-"""
+
 def set_multi(key_values):
-    table = HASH_TABLE
-    for key in key_values:
-        hash_ = make_hash(str(key))
-        try:
-            table[hash_] 
-"""
+    map(lambda x: set(x, key_values[x]), key_values)
+    return True
+
 
 def raise_key_error(key):
     raise KeyError("Key '{}' not present in hash table".format(key))
@@ -63,7 +62,7 @@ def raise_key_error(key):
 
 def get(key):
     table = HASH_TABLE
-    hash_ = make_hash(str(key))
+    hash_ = make_hash(key)
     try:
         value = table[hash_]
         if value:
@@ -76,9 +75,13 @@ def get(key):
         return None
 
 
+def get_multi(*keys):
+    return map(get, keys)
+
+
 def delete(key):
     table = HASH_TABLE
-    hash_ = make_hash(str(key))
+    hash_ = make_hash(key)
     try:
         if table[hash_]:
             table[hash_] = None
@@ -87,3 +90,7 @@ def delete(key):
             raise_key_error(key)
     except IndexError:
         raise_key_error(key)
+
+def delete_multi(*keys):
+    map(delete, keys)
+    return True
