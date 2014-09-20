@@ -10,7 +10,7 @@
 """
 
 def make_hash(key):
-    """Makes hash by summing up string's ascii codes"""
+    """Makes hash by summing up string's ascii codes."""
     key = str(key)
     hash_ = 0
     for c in key:
@@ -36,6 +36,12 @@ class FalseValue(object):
 
 HASH_TABLE = []
 def set(key, value):
+    """
+    Dynamically creates more hash buckets depending on the key's length.
+
+    HASH_TABLE is just a really huge list. One object's hash is the
+    index where it is at HASH_TABLE.
+    """
     table = HASH_TABLE
     hash_ = make_hash(key)
     # Value is falsey, special procedure to handle
@@ -52,15 +58,18 @@ def set(key, value):
 
 
 def set_multi(key_values):
+    """Multiple sets, takes in a dictionary."""
     map(lambda x: set(x, key_values[x]), key_values)
     return True
 
 
 def raise_key_error(key):
+    """Raise error if key not in HASH_TABLE"""
     raise KeyError("Key '{}' not present in hash table".format(key))
 
 
 def get(key):
+    """O(1) function to get value from hash table using key."""
     table = HASH_TABLE
     hash_ = make_hash(key)
     try:
@@ -76,10 +85,15 @@ def get(key):
 
 
 def get_multi(*keys):
+    """Multiple gets, arguments tuple as parameter."""
     return map(get, keys)
 
 
 def delete(key):
+    """
+    Removes object (based on key) from HASH_TABLE.
+    To be specific, convert to None.
+    """
     table = HASH_TABLE
     hash_ = make_hash(key)
     try:
@@ -91,6 +105,8 @@ def delete(key):
     except IndexError:
         raise_key_error(key)
 
+
 def delete_multi(*keys):
+    """Multiple deletes. Takes in arguments tuple as keys."""
     map(delete, keys)
     return True
